@@ -22,8 +22,15 @@ bot = commands.Bot(prefix, intents=intents)
 async def mem(ctx, number = None):    
     await ctx.message.add_reaction(emojifinal)
     if number == None:
-        number = random.randint(1,4)
-        if number != 4:
+        number = random.randint(1,5)
+    if number != 4:
+        if number == 5:
+            number2 = random.randint(1,2)
+            if number2 == 2:
+                pass
+            if number2 == 1:
+                ctx.reply("https://cdn.discordapp.com/attachments/1184203782054228052/1205876815365668874/34ab67ad023b47089a931c67c44c2b66.jpg?ex=65d9f74c&is=65c7824c&hm=2ca6aede20189c108ae0e1a988a0e9726ab0b787c065972c739e6f7e0414b06f&")
+        else:
             with open(f'mem{number}.jpg', 'rb') as f:
                 # В переменную кладем файл, который преобразуется в файл библиотеки Discord!
                 picture = discord.File(f)
@@ -32,11 +39,12 @@ async def mem(ctx, number = None):
             await asyncio.sleep(10)
             await ctx.message.delete()
             await message.delete()
-        else:
-            message = await ctx.reply("https://cdn.discordapp.com/attachments/1184203782054228052/1205874534562009148/a8e1a44c0524ee5bc99b7be1da40a566.jpg?ex=65d9f52d&is=65c7802d&hm=d193943db31594ea7672f6048d041f2537dc16fdcf84d62bf596dc391bf930c1&")
-            await asyncio.sleep(10)
-            await ctx.message.delete()
-            await message.delete()
+
+    if number == 4:
+        message = await ctx.reply("https://cdn.discordapp.com/attachments/1184203782054228052/1205874534562009148/a8e1a44c0524ee5bc99b7be1da40a566.jpg?ex=65d9f52d&is=65c7802d&hm=d193943db31594ea7672f6048d041f2537dc16fdcf84d62bf596dc391bf930c1&")
+        await asyncio.sleep(10)
+        await ctx.message.delete()
+        await message.delete()
 
 
 
