@@ -1,0 +1,39 @@
+@bot.command(name="check")
+async def check(ctx, Mention_member: discord.Member = None):
+    if Mention_member == None:
+        message = await ctx.reply(
+            f"**{ctx.author.mention}, вы не написали аргумент! А именно: `Упоминание участника`**")
+        await ctx.message.add_reaction(reaction2)
+        await asyncio.sleep(10)
+        await message.delete()
+        await ctx.message.delete()
+    else:
+        rolea = discord.utils.find(lambda r: r.id == 1141777725305143407, ctx.message.guild.roles)
+        if rolea in ctx.author.roles:
+            role = ctx.guild.get_role(1155179651262599188)
+            await Mention_member.add_roles(role)
+            await ctx.message.delete()
+            channel = 1179110614061285496
+            AdminPing = 1124611754043912332
+            channel3 = bot.get_channel(1155947611719749642)
+
+            await channel3.send(f"**{Mention_member.mention} на проверке. <@&1164969649079853176>**")
+            channel2 = bot.get_channel(1186327414926749738)
+            await channel2.send(
+                f"**Пользователь {Mention_member.mention} был вызван на проверку.\nВызвал: {ctx.author.mention}**")
+
+            channel4 = bot.get_channel(1179110614061285496)
+            await ctx.send(embed=discord.Embed(title=f"**ВЫ НАХОДИТЕСЬ НА ПРОВЕРКЕ**",
+                                               description=f"**1. {Mention_member.mention}, вы находитесь на проверке, ваша задача в течении 24 часов договориться с администратором <@{AdminPing}> о времени проверки.\n2. Когда вы договоритесь, в договорённое время зайдите в голосовой канал <#{channel4.id}> и когда зайдёте, ждите администратора.\n3. Когда администратор будет онлайн, он перекинет вас в канал для проверки и у вас будет происходить проверка. В ней вы будете играть 3 дуэли на ReallyWorld и там уже мы проверим ваш скилл и проверим будете ли вы в клане.\nУдачи!**",
+                                               color=0x2200fc))
+            message = await ctx.send(f"<@{Mention_member.id}> <@{AdminPing}>")
+            await asyncio.sleep(2)
+            await message.delete()
+
+        else:
+
+            message = await ctx.reply(f"**{ctx.author.mention}, недостаточно прав!**")
+            await ctx.message.add_reaction(reaction2)
+            await asyncio.sleep(10)
+            await message.delete()
+            await ctx.message.delete()
