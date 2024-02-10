@@ -1,0 +1,33 @@
+import discord
+from discord.ext import commands
+import random
+import os
+import asyncio
+os.chdir(os.path.dirname(__file__))
+f = open(r'C:\kurs\bot\token.txt', "r")
+token = f.read()
+f.close()
+prefix = "!"
+emoji = "🤣"
+emoji2 = "😂"
+emojifinal = random.randint(1,2)
+if emojifinal == 1:
+    emojifinal = "🤣"
+if emojifinal == 2:
+    emojifinal = "😂"
+intents = discord.Intents.all()
+bot = commands.Bot(prefix, intents=intents)
+@bot.command()
+async def mem(ctx, number = None):    
+    await ctx.message.add_reaction(emojifinal)
+    if number == None:
+        number = random.randint(1,3)
+    with open(f'mem{number}.jpg', 'rb') as f:
+        # В переменную кладем файл, который преобразуется в файл библиотеки Discord!
+        picture = discord.File(f)
+   # Можем передавать файл как параметр!
+    message = await ctx.reply(file=picture)
+    await asyncio.sleep(10)
+    await ctx.message.delete()
+    await message.delete()
+bot.run(token)
