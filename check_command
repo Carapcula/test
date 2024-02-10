@@ -37,3 +37,26 @@ async def check(ctx, Mention_member: discord.Member = None):
             await asyncio.sleep(10)
             await message.delete()
             await ctx.message.delete()
+
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, discord.ext.commands.errors.CommandNotFound):
+        message = await ctx.reply(
+            f"**{ctx.author.mention}, команда не найдена!\nЧтобы узнать команды, напишите : `!help`**")
+        await ctx.message.add_reaction(reaction2)
+        await asyncio.sleep(10)
+        await message.delete()
+        await ctx.message.delete()
+
+
+@bot.command(name="help")
+async def help(ctx):
+    await ctx.message.add_reaction(reaction)
+    mess = await ctx.reply(embed=discord.Embed(title="**Мои команды:**",
+                                               description=f"**ПРЕФИКС - `!`\nЧТОБЫ УЗНАТЬ КОМАНДЫ - !commands\n1. check `PingSomeOne` - вызывает на проверку\n2. retard `PingSomeOne` - дает роль <@&1172819804936208384>\n3. непроверен `PingSomeOne` - убирает роль <@&1146003460534317067>\n4. проверен `PingSomeOne` - дает роль <@&1146003460534317067>\n4. исп_срок `PingSomeOne` - дает роль <@&1173166689744080966>\n5. /moders - дает фулл список модеров для .staffs add\n6. checkm `PingSomeOne` - просто повторяет сообщение из !check, не пингуя в новостях и т.д\n7. spam `InputSome` - спамит то, что вы написали\n8. .stop - останавливает спам**",
+                                               color=0xc0f))
+    await asyncio.sleep(25)
+    await ctx.message.delete()
+    await mess.delete()
+
+
