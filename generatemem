@@ -46,6 +46,30 @@ async def mem(ctx, number = None):
         await ctx.message.delete()
         await message.delete()
 
+@bot.command()
+async def eco(ctx, вид = None):
+    trueword = False
+    spisok = ["пластик", "стекло", "бумага", "алюминий", "резина"]
+    if вид == None:
+        вид = random.choice(spisok)
+    for word in spisok:
+        if word == вид:
+            trueword = True
+            break
+    if trueword != True:
+        await ctx.reply(f"Выбери одно из значений! {spisok}")
+    else:
+        if вид == "резина":
+            await ctx.reply("Резина разлагается `120`-`140` лет**!**")
+        if вид == "алюминий":
+            await ctx.reply("Алюминий разлагается `500` лет**!**")
+        if вид == "бумага":
+            await ctx.reply("Бумага разлагается около `2` месяцев**!**")
+        if вид == "стекло":
+            await ctx.reply("Стекло разлагается около `1000` лет**!**")
+        if вид == "пластик":
+            await ctx.reply("Пластик разлагается от `400` до `700` лет**!**")
+
 
 
 bot.run(token)
